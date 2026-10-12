@@ -28,6 +28,7 @@ async def apply_top():
         <a href="/apply/commute"><button>通勤定期代変更届</button></a><br>
         <a href="/apply/bank"><button>給与・賞与振込口座届</button></a><br>
         <a href="/apply/late"><button>遅刻早退届</button></a><br>
+        <a href="/apply/holidaywork"><button>休日出勤申請</button></a><br>
 
         <br><br>
         <button type="button" onclick="closeWindow()">閉じる</button>
@@ -54,11 +55,13 @@ async def apply_leave():
             <label>承認期限：</label>
             <input type="date" name="approval_deadline"><br><br>
 
-            <label>休暇種類：</label><br>
-            <input type="radio" name="leave_type" value="paid"> 有給休暇<br>
-            <input type="radio" name="leave_type" value="summer"> 夏季休暇<br>
-            <input type="radio" name="leave_type" value="special"> 特別休暇<br>
-            <input type="radio" name="leave_type" value="absence"> 欠勤<br><br>
+            <label class="radio-title">休暇種類：</label>
+            <div class="radio-group">
+                <label><input type="radio" name="leave_type" value="paid"> 有給休暇</label>
+                <label><input type="radio" name="leave_type" value="summer"> 夏季休暇</label>
+                <label><input type="radio" name="leave_type" value="special"> 特別休暇</label>
+                <label><input type="radio" name="leave_type" value="absence"> 欠勤</label>
+            </div>
 
             <label>休暇日：</label>
             <input type="date" name="leave_date"><br><br>
@@ -100,12 +103,14 @@ async def apply_address():
             <label>住所変更日：</label>
             <input type="date" name="change_date"><br><br>
 
-            <label>住所形態：</label><br>
-            <input type="radio" name="address_type" value="own"> 持ち家<br>
-            <input type="radio" name="address_type" value="rent"> 賃貸<br>
-            <input type="radio" name="address_type" value="parent"> 親元<br>
-            <input type="radio" name="address_type" value="company_house"> 社宅<br>
-            <input type="radio" name="address_type" value="company_contract"> 会社契約<br><br>
+            <label class="radio-title">住所形態：</label>
+            <div class="radio-group">
+                <label><input type="radio" name="address_type" value="own"> 持ち家</label>
+                <label><input type="radio" name="address_type" value="rent"> 賃貸</label>
+                <label><input type="radio" name="address_type" value="parent"> 親元</label>
+                <label><input type="radio" name="address_type" value="company_house"> 社宅</label>
+                <label><input type="radio" name="address_type" value="company_contract"> 会社契約</label>
+            </div>
 
             <label>通勤経路の変更：</label>
             <input type="checkbox" name="commute_change"><br><br>
@@ -170,7 +175,7 @@ async def apply_name():
 
 
 # =========================
-# 通勤定期代変更届（完全版）
+# 通勤定期代変更届（ラジオ横並び対応）
 # =========================
 @router.get("/apply/commute", response_class=HTMLResponse)
 async def apply_commute():
@@ -193,13 +198,15 @@ async def apply_commute():
             <label>変更日：</label>
             <input type="date" name="change_date"><br><br>
 
-            <label>変更理由：</label><br>
-            <input type="radio" name="change_reason" value="move"> 転居<br>
-            <input type="radio" name="change_reason" value="transfer"> 転勤・異動<br>
-            <input type="radio" name="change_reason" value="office_move"> 事務所移転<br>
-            <input type="radio" name="change_reason" value="price_change"> 料金改定<br>
-            <input type="radio" name="change_reason" value="route_change"> 経路変更<br>
-            <input type="radio" name="change_reason" value="other"> その他<br><br>
+            <label class="radio-title">変更理由：</label>
+            <div class="radio-group">
+                <label><input type="radio" name="change_reason" value="move"> 転居</label>
+                <label><input type="radio" name="change_reason" value="transfer"> 転勤・異動</label>
+                <label><input type="radio" name="change_reason" value="office_move"> 事務所移転</label>
+                <label><input type="radio" name="change_reason" value="price_change"> 料金改定</label>
+                <label><input type="radio" name="change_reason" value="route_change"> 経路変更</label>
+                <label><input type="radio" name="change_reason" value="other"> その他</label>
+            </div>
 
             <label>その他（理由詳細）：</label>
             <input type="text" name="reason_other"><br><br>
@@ -257,10 +264,12 @@ async def apply_commute():
             <input type="number" name="bus1_price"><br><br>
 
             <h3>交通用具利用の場合</h3>
-            <label>交通用具：</label><br>
-            <input type="radio" name="vehicle_type" value="bicycle"> 自転車<br>
-            <input type="radio" name="vehicle_type" value="bike"> バイク<br>
-            <input type="radio" name="vehicle_type" value="car"> 乗用車<br><br>
+            <label class="radio-title">交通用具：</label>
+            <div class="radio-group">
+                <label><input type="radio" name="vehicle_type" value="bicycle"> 自転車</label>
+                <label><input type="radio" name="vehicle_type" value="bike"> バイク</label>
+                <label><input type="radio" name="vehicle_type" value="car"> 乗用車</label>
+            </div>
 
             <label>利用区間 開始：</label>
             <input type="text" name="vehicle_start"><br><br>
@@ -329,7 +338,7 @@ async def apply_bank():
 
 
 # =========================
-# 遅刻早退届
+# 遅刻早退届（休日出勤と分割済）
 # =========================
 @router.get("/apply/late", response_class=HTMLResponse)
 async def apply_late():
@@ -346,15 +355,52 @@ async def apply_late():
             <label>承認期限：</label>
             <input type="date" name="approval_deadline"><br><br>
 
-            <label>内容：</label><br>
-            <input type="radio" name="type" value="late"> 遅刻<br>
-            <input type="radio" name="type" value="early"> 早退<br><br>
+            <label class="radio-title">内容：</label>
+            <div class="radio-group">
+                <label><input type="radio" name="type" value="late"> 遅刻</label>
+                <label><input type="radio" name="type" value="early"> 早退</label>
+            </div>
 
             <label>日時：</label>
             <input type="datetime-local" name="datetime"><br><br>
 
             <label>理由：</label><br>
             <textarea name="reason" rows="4"></textarea><br><br>
+
+            <button type="submit">申請する</button>
+        </form>
+
+        <br><br>
+        <a href="/apply"><button type="button">申請メニューに戻る</button></a>
+    </body>
+    </html>
+    """
+
+
+# =========================
+# 休日出勤申請（新規分割）
+# =========================
+@router.get("/apply/holidaywork", response_class=HTMLResponse)
+async def apply_holidaywork():
+    return """
+    <html>
+    <head>
+        <title>休日出勤申請</title>
+        <link rel="stylesheet" href="/static/style.css">
+    </head>
+    <body>
+        <h2>休日出勤申請</h2>
+
+        <form action="/apply/holidaywork/submit" method="post">
+
+            <!-- 申請者（非表示） -->
+            <input type="hidden" name="applicant_id" value="USER_ID_PLACEHOLDER">
+
+            <!-- 申請日（非表示） -->
+            <input type="hidden" name="apply_date" value="{NOW}">
+
+            <label>承認期限：</label>
+            <input type="date" name="approval_deadline"><br><br>
 
             <label>休日出勤日：</label>
             <input type="date" name="holiday_work_date"><br><br>
@@ -366,13 +412,15 @@ async def apply_late():
             <textarea name="holiday_work_detail" rows="3"></textarea><br><br>
 
             <label>休日出勤の理由：</label><br>
-            <textarea name="holiday_work_reason" rows="3"></textarea><br><br>
+            <textarea name="holiday_work_reason" rows="4"></textarea><br><br>
 
             <button type="submit">申請する</button>
         </form>
 
         <br><br>
-        <a href="/apply"><button type="button">申請メニューに戻る</button></a>
+        <a href="/apply">
+            <button type="button">申請メニューに戻る</button>
+        </a>
     </body>
     </html>
     """
