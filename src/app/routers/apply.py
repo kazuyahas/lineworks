@@ -56,7 +56,7 @@ async def apply_leave():
             <input type="date" name="approval_deadline"><br><br>
 
             <label class="radio-title">休暇種類：</label>
-            <div class="radio-group">
+            <div class="radio-vertical">
                 <label><input type="radio" name="leave_type" value="paid"> 有給休暇</label>
                 <label><input type="radio" name="leave_type" value="summer"> 夏季休暇</label>
                 <label><input type="radio" name="leave_type" value="special"> 特別休暇</label>
