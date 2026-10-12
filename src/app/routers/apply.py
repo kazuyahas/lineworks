@@ -1,3 +1,6 @@
+from fastapi import APIRouter
+router = APIRouter()
+
 @router.get("/apply", response_class=HTMLResponse)
 async def apply_top():
     return """
