@@ -1,0 +1,9 @@
+fastapi==0.124.4
+uvicorn==0.22.0
+asyncpg
+python-dotenv
+python-jose
+python-multipart
+httpx
+PyJWT
+jinja2
