@@ -3,22 +3,16 @@ from fastapi.responses import HTMLResponse
 
 router = APIRouter()
 
-
+# =========================
+# 申請トップ（閉じるボタン付き）
+# =========================
 @router.get("/apply", response_class=HTMLResponse)
 async def apply_top():
     return """
     <html>
     <head>
         <title>申請メニュー</title>
-        <style>
-            body { font-family: sans-serif; padding: 30px; }
-            button {
-                width: 260px;
-                padding: 12px;
-                font-size: 16px;
-                margin: 6px 0;
-            }
-        </style>
+        <link rel="stylesheet" href="/static/style.css">
         <script>
             function closeWindow() {
                 window.open('about:blank','_self').close();
@@ -27,7 +21,6 @@ async def apply_top():
     </head>
     <body>
         <h2>申請メニュー</h2>
-        <p>実施したい申請を選択してください。</p>
 
         <a href="/apply/leave"><button>休暇申請</button></a><br>
         <a href="/apply/address"><button>住所変更申請</button></a><br>
@@ -41,10 +34,17 @@ async def apply_top():
     </body>
     </html>
     """
+
+
+# =========================
+# 休暇申請
+# =========================
 @router.get("/apply/leave", response_class=HTMLResponse)
 async def apply_leave():
     return """
-    <html><body>
+    <html>
+    <head><link rel="stylesheet" href="/static/style.css"></head>
+    <body>
         <h2>休暇申請</h2>
         <form action="/apply/leave/submit" method="post">
 
@@ -74,12 +74,20 @@ async def apply_leave():
 
         <br><br>
         <a href="/apply"><button type="button">申請メニューに戻る</button></a>
-    </body></html>
+    </body>
+    </html>
     """
+
+
+# =========================
+# 住所変更申請
+# =========================
 @router.get("/apply/address", response_class=HTMLResponse)
 async def apply_address():
     return """
-    <html><body>
+    <html>
+    <head><link rel="stylesheet" href="/static/style.css"></head>
+    <body>
         <h2>住所変更申請</h2>
         <form action="/apply/address/submit" method="post">
 
@@ -116,13 +124,21 @@ async def apply_address():
 
         <br><br>
         <a href="/apply"><button type="button">申請メニューに戻る</button></a>
-    </body></html>
+    </body>
+    </html>
     """
+
+
+# =========================
+# 氏名変更申請
+# =========================
 @router.get("/apply/name", response_class=HTMLResponse)
 async def apply_name():
     return """
-    <html><body>
-        <h2>氏名変更届</h2>
+    <html>
+    <head><link rel="stylesheet" href="/static/style.css"></head>
+    <body>
+        <h2>氏名変更申請</h2>
         <form action="/apply/name/submit" method="post">
 
             <input type="hidden" name="applicant_id" value="USER_ID_PLACEHOLDER">
@@ -148,12 +164,20 @@ async def apply_name():
 
         <br><br>
         <a href="/apply"><button type="button">申請メニューに戻る</button></a>
-    </body></html>
+    </body>
+    </html>
     """
+
+
+# =========================
+# 通勤定期代変更届（完全版）
+# =========================
 @router.get("/apply/commute", response_class=HTMLResponse)
 async def apply_commute():
     return """
-    <html><body>
+    <html>
+    <head><link rel="stylesheet" href="/static/style.css"></head>
+    <body>
         <h2>通勤定期代変更届</h2>
         <form action="/apply/commute/submit" method="post">
 
@@ -256,19 +280,24 @@ async def apply_commute():
 
         <br><br>
         <a href="/apply"><button type="button">申請メニューに戻る</button></a>
-    </body></html>
+    </body>
+    </html>
     """
+
+
+# =========================
+# 給与・賞与振込口座届
+# =========================
 @router.get("/apply/bank", response_class=HTMLResponse)
 async def apply_bank():
     return """
-    <html><body>
+    <html>
+    <head><link rel="stylesheet" href="/static/style.css"></head>
+    <body>
         <h2>給与・賞与振込口座届</h2>
         <form action="/apply/bank/submit" method="post">
 
-            <!-- 申請者（非表示） -->
             <input type="hidden" name="applicant_id" value="USER_ID_PLACEHOLDER">
-
-            <!-- 申請日（非表示） -->
             <input type="hidden" name="apply_date" value="{NOW}">
 
             <label>承認期限：</label>
@@ -293,22 +322,25 @@ async def apply_bank():
         </form>
 
         <br><br>
-        <a href="/apply">
-            <button type="button">申請メニューに戻る</button>
-        </a>
-    </body></html>
+        <a href="/apply"><button type="button">申請メニューに戻る</button></a>
+    </body>
+    </html>
     """
+
+
+# =========================
+# 遅刻早退届
+# =========================
 @router.get("/apply/late", response_class=HTMLResponse)
 async def apply_late():
     return """
-    <html><body>
+    <html>
+    <head><link rel="stylesheet" href="/static/style.css"></head>
+    <body>
         <h2>遅刻早退届</h2>
         <form action="/apply/late/submit" method="post">
 
-            <!-- 申請者（非表示） -->
             <input type="hidden" name="applicant_id" value="USER_ID_PLACEHOLDER">
-
-            <!-- 申請日（非表示） -->
             <input type="hidden" name="apply_date" value="{NOW}">
 
             <label>承認期限：</label>
@@ -340,8 +372,7 @@ async def apply_late():
         </form>
 
         <br><br>
-        <a href="/apply">
-            <button type="button">申請メニューに戻る</button>
-        </a>
-    </body></html>
+        <a href="/apply"><button type="button">申請メニューに戻る</button></a>
+    </body>
+    </html>
     """
