@@ -24,16 +24,16 @@ button {
 }
 
 .radio-vertical label {
+    width: auto !important;   /* ← これで親の400pxを無効化 */
     display: flex;
     align-items: center;
-    gap: 4px; /* ← ボタンと文字の間隔を最小にする */
-    font-size: 16px;
-    line-height: 1.4;
+    gap: 4px;
 }
 
 .radio-vertical input[type="radio"] {
-    margin: 0; /* ← ブラウザの余計な余白を完全に消す */
+    margin: 0;
     padding: 0;
+    width: auto;
 }
 
 
