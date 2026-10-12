@@ -104,7 +104,7 @@ async def apply_address():
             <input type="date" name="change_date"><br><br>
 
             <label class="radio-title">住所形態：</label>
-            <div class="radio-group">
+            <div class="radio-vertical">
                 <label><input type="radio" name="address_type" value="own"> 持ち家</label>
                 <label><input type="radio" name="address_type" value="rent"> 賃貸</label>
                 <label><input type="radio" name="address_type" value="parent"> 親元</label>
@@ -199,7 +199,7 @@ async def apply_commute():
             <input type="date" name="change_date"><br><br>
 
             <label class="radio-title">変更理由：</label>
-            <div class="radio-group">
+            <div class="radio-vertical">
                 <label><input type="radio" name="change_reason" value="move"> 転居</label>
                 <label><input type="radio" name="change_reason" value="transfer"> 転勤・異動</label>
                 <label><input type="radio" name="change_reason" value="office_move"> 事務所移転</label>
@@ -265,7 +265,7 @@ async def apply_commute():
 
             <h3>交通用具利用の場合</h3>
             <label class="radio-title">交通用具：</label>
-            <div class="radio-group">
+            <div class="radio-vertical">
                 <label><input type="radio" name="vehicle_type" value="bicycle"> 自転車</label>
                 <label><input type="radio" name="vehicle_type" value="bike"> バイク</label>
                 <label><input type="radio" name="vehicle_type" value="car"> 乗用車</label>
@@ -356,7 +356,7 @@ async def apply_late():
             <input type="date" name="approval_deadline"><br><br>
 
             <label class="radio-title">内容：</label>
-            <div class="radio-group">
+            <div class="radio-vertical">
                 <label><input type="radio" name="type" value="late"> 遅刻</label>
                 <label><input type="radio" name="type" value="early"> 早退</label>
             </div>
