@@ -8,7 +8,7 @@ def generate_jwt():
         "iat": now,
         "exp": now + 1800
     }
-    with open("/etc/secrets/private_20251216230109.key", "r") as f:
+    with open("/etc/secrets/private_20261014164535.key", "r") as f:
         private_key = f.read()
     return jwt.encode(payload, private_key, algorithm="RS256")
 
