@@ -7,3 +7,5 @@ python-multipart
 httpx
 PyJWT
 jinja2
+cryptography
+requests
