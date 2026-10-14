@@ -7,6 +7,7 @@ LIST_URL = "https://lineworks-1.onrender.com/apply"
 
 MENU_DATA = {
     "content": {
+        "contentText": "メニューを選択してください",
         "actions": [
             {
                 "type": "uri",
