@@ -9,7 +9,7 @@ MENU_DATA = {
     "content": {
         "actions": [
             {
-                "type": "message",
+                "type": "uri",
                 "label": "申請ＴＯＰ",
                 "uri": "https://lineworks-1.onrender.com/apply"
             }
