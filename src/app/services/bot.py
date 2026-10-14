@@ -13,6 +13,6 @@ def register_persistent_menu(menu_data: dict, token: str):
         "Authorization": f"Bearer {token}"
     }
 
-    resp = requests.put(url, headers=headers, data=json.dumps(menu_data))
+    resp = requests.post(url, headers=headers, data=json.dumps(menu_data))
     return resp.status_code, resp.text
 
