@@ -1,0 +1,4 @@
+### 固定メニュー登録
+### 申請画面のリンクボタン追加用
+POST https://lineworks-ib4q.onrender.com/admin/register_menu
+Content-Type: application/json
