@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Request
-from app.services.bot import register_persistent_menu
+from app.services.bot import register_persistent_menu,
+from app.services.bot import start_work_persistent_menu
 
 router = APIRouter()
 PC_URL = "https://lineworks-1.onrender.com/apply"
