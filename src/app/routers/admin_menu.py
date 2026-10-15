@@ -40,7 +40,7 @@ async def start_work_menu(request: Request):
                     "type": "message",
                     "label": "勤務開始（出社）",
                     "text ": "勤務開始　出社"
-                }
+                },
                 {
                     "type": "message",
                     "label": "勤務終了（在宅）",
