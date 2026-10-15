@@ -11,5 +11,6 @@ app.mount("/static", StaticFiles(directory="app/static"), name="static")
 @app.on_event("startup")
 async def startup_event():
     app.state.access_token = get_access_token()
+
 app.include_router(apply.router)
 app.include_router(admin_menu.router)
